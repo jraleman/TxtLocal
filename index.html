@@ -5,25 +5,48 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WriGit</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous" />
+    <link rel="stylesheet" href="./css/fonts.css" />
+    <link rel="stylesheet" href="./css/styles.css" />
 </head>
 <body>
     <h1>
+        <img src="./assets/logo.png" alt="logo" class="logo">
         <span style="vertical-align: super;">WriGit</span>
-        <img src="./assets/logo.jpg" alt="logo" style="width: auto; height: 72px; vertical-align: sub;">
     </h1>
     <form role="form">
         <div class="form-group">
-            <label for="input-title">Title</label>
-            <input type="text" id="input title" class="form-control" placeholder="Name this document/note/thought 📝 🧠 💭" />
+            <label for="file-name">
+Enter a Title 🧠 💭 ✏️
+            </label>
+            <input type="text" id="file-name" class="form-control" placeholder="Name this document/note/thought 📝 🧠 💭" />
         </div>
         <div class="form-group">
-            <label for="textarea">Text</label>
-            <textarea id="textarea" class="form-control" rows="10" placeholder="Enter text to save">
-                Hello everyone, concerned Christian Father here. Recently my 11 year old son downloaded the video game Fortnite after playing it at a friend’s house. While I didn’t mind it at first, it soon began affect his character. Within a week he had taken up semi-pro Fortnite dancing competitions. When asked to do his homework, he called me a “default” and did a strange pose with his arms extended outwards. His grades have been dropping heavily ever since that day and when I confront him about it he threatens to “one pump” me. He refuses to eat his favourite foods anymore and constantly demands a “chug jug”. Now he has dyed his hair the colour blue as a way to “promote” his idol “Ninja” and refers to me and my wife as “little craps”. I try to get him to go to bible studies now but he just tells me to jump out of the “battle bus” without a glider. Please help.
+            <label for="textarea">
+Write something! 📝 
+            </label>
+            <textarea id="body-content" class="form-control" rows="10" placeholder="Enter text to save">
+# Title
+
+## Chapter 1 - What do I do?
+
+> Hello everyone, concerned Christian Father here.
+> Recently my 11 year old son downloaded the video game Fortnite after playing it at a friend’s house.
+> While I didn’t mind it at first, it soon began affect his character.
+> Within a week he had taken up semi-pro Fortnite dancing competitions.
+> When asked to do his homework, he called me a “default” and did a strange pose with his arms extended outwards.
+> His grades have been dropping heavily ever since that day and when I confront him about it he threatens to “one pump” me.
+> He refuses to eat his favourite foods anymore and constantly demands a “chug jug”.
+> Now he has dyed his hair the colour blue as a way to “promote” his idol “Ninja” and refers to me and my wife as “little craps”.
+> I try to get him to go to bible studies now but he just tells me to jump out of the “battle bus” without a glider.
+
+> **Please help!!!**
             </textarea>
         </div>
-        <button id="btn-save" type="submit" class="btn btn-primary">Save</button>
+        <button id="btn-save" type="submit" class="btn btn-primary hover-btn">
+            <span class="text-btn"></span>
+            <span class="gradient"></span>
+        </button>
     </form>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
 </body>
