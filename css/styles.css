@@ -1,8 +1,3 @@
-@font-face {
-    font-family: On My Way;
-    src: url(./assets/fonts/on_my_way.otf);
-}
-
 body {
     padding: 1em;
     background: #EEE;
@@ -14,6 +9,12 @@ h1 {
     text-align: center;
     font-size: 42px;
     font-family: url('./assets/fonts/on_my_way.ttf'), sans-serif;
+}
+
+.title {
+    vertical-align: sub;
+    padding-left: 0.25em;
+    color: #32c3e8;
 }
 
 label {
@@ -134,9 +135,16 @@ textarea {
     transition: opacity 201ms ease-in-out;
 }
 
-.logo {
-    color: -webkit-linear-gradient(left top, #3378e8, #32c3e8);
+.logo-container {
+    background: -webkit-linear-gradient(left top, #3378e8, #32c3e8);
+    background: -o-linear-gradient(bottom right, #3378e8, #32c3e8);
+    background: -moz-linear-gradient(bottom right, #3378e8, #32c3e8);
+    background: linear-gradient(bottom right, #3378e8, #32c3e8);
+    vertical-align: sub;
+}
+
+.logo-img {
     width: auto;
     height: 72px;
-    vertical-align: sub;
+    filter: invert();
 }
