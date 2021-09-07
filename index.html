@@ -18,10 +18,10 @@
     </h1>
     <form role="form" onsubmit="return onSave(event)">
         <div class="form-group">
-            <label for="file-name">
+            <label for="doc-title">
 Enter a Title 🧠 💭 ✏️
             </label>
-            <input type="text" id="file-name" class="form-control" placeholder="Name this document/note/thought 📝 🧠 💭" />
+            <input type="text" id="doc-title" class="form-control" placeholder="Name this document/note/thought" />
         </div>
         <div class="form-group">
             <label for="textarea">
@@ -49,6 +49,12 @@ Write something! 📝
             <span class="text-btn"></span>
             <span class="gradient"></span>
         </button>
+        <div class="form-group">
+            <label for="doc-title">
+Click checkbox to save a local copy ⬇️ 🖥 
+            </label>
+            <input type="checkbox" id="save-local" />
+        </div>
     </form>
     <script src="js/scripts.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
