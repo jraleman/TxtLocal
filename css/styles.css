@@ -118,7 +118,6 @@ textarea {
     border-radius: 100%;
     width: 200%;
     height: 300%;
-    background: red;
     background: -webkit-radial-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0));
     background: -o-radial-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0));
     background: -moz-radial-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0));
