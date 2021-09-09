@@ -1,3 +1,28 @@
+const content = `# Title
+
+## Chapter 1 - What do I do?
+
+> Hello everyone, concerned Christian Father here.
+> Recently my 11 year old son downloaded the video game Fortnite after playing it at a friend’s house.
+> While I didn’t mind it at first, it soon began affect his character.
+> Within a week he had taken up semi-pro Fortnite dancing competitions.
+> When asked to do his homework, he called me a “default” and did a strange pose with his arms extended outwards.
+> His grades have been dropping heavily ever since that day and when I confront him about it he threatens to “one pump” me.
+> He refuses to eat his favourite foods anymore and constantly demands a “chug jug”.
+> Now he has dyed his hair the colour blue as a way to “promote” his idol “Ninja” and refers to me and my wife as “little craps”.
+> I try to get him to go to bible studies now but he just tells me to jump out of the “battle bus” without a glider.
+
+> **Please help!!!**
+`;
+
+const editor = new toastui.Editor({
+    el: document.querySelector('#editor'),
+    previewStyle: 'vertical',
+    height: '500px',
+    initialValue: content,
+    initialEditType: 'wysiwyg'
+});
+
 // TODO: implement function to see markdown preview
 
 // TODO: implement function that handle buttons to change between text styles
@@ -28,7 +53,7 @@ const saveLocalFile = (blob, filename) => {
 
 const onSave = (event) => {
     event.preventDefault();
-    const bodyContent = document.getElementById('body-content').innerHTML;
+    const bodyContent = editor.getMarkdown();
     const file = document.getElementById('doc-title').value;
     const extension = '.md';
     const filename = `${file || 'filename'}${extension}`;
