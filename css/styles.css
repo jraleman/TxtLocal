@@ -148,3 +148,7 @@ textarea {
     height: 72px;
     filter: invert();
 }
+
+#dropdown {
+    width: 50%;
+}

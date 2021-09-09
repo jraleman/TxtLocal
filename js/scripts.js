@@ -1,4 +1,9 @@
-const content = `# Title
+// https://github.com/nhn/tui.editor/issues/1637
+// https://github.com/nhn/tui.editor/issues/360
+
+const title = 'This is an idea of what we can do...';
+
+const content = `# ${title}
 
 ## Chapter 1 - What do I do?
 
@@ -22,11 +27,6 @@ const editor = new toastui.Editor({
     initialValue: content,
     initialEditType: 'wysiwyg'
 });
-
-// TODO: implement function to see markdown preview
-
-// TODO: implement function that handle buttons to change between text styles
-// i.e., H1, H2, H3... bold, italics, etc..
 
 // https://stackoverflow.com/a/30832210
 // TODO: save into a .zip file, containing also git changes of that file
@@ -77,9 +77,35 @@ const onSave = (event) => {
     );
     // TODO: Implement function to save file -> sendToBackend(blob, filename, ...);
 
-    // TODO: Add toggle to enable/disable a local copy
     const saveLocal = document.getElementById('save-local').checked;
     if (saveLocal) {
         saveLocalFile(blob, filename);
     }
 };
+
+const populateDropdown = () => {
+    const dropdown = document.getElementById('dropdown');
+    if (dropdown.innerHTML) {
+        return;
+    }
+
+    const json = { 'data': [`${title} - 4`, `${title} - 3`, `${title} - 2`, `${title} - 1`] };
+    for (let i = 0; i < json.data.length; i += 1) {
+        const option = document.createElement('option');
+        option.text = json.data[i];
+        option.value = json.data[i];
+        dropdown.add(option);
+    }
+    return dropdown;
+};
+
+const setTitle = () => {
+    const titleInput = document.getElementById('doc-title');
+    titleInput.value = title;
+};
+
+const runOnLoad = () => {
+    setTitle();
+};
+
+document.onload = runOnLoad();

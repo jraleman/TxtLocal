@@ -24,29 +24,28 @@ Enter a Title 🧠 💭 ✏️
             </label>
             <input type="text" id="doc-title" class="form-control" placeholder="Name this document/note/thought" />
         </div>
-        
         <div id="editor"></div>
-        
-        
-        <!-- <div class="form-group">
-            <label for="textarea">
-                Write something! 📝 
+        <div class="form-group">
+            <label for="dropdown">
+                Find a previous commit 👀
             </label>
-            <textarea id="body-content" class="form-control" rows="10" placeholder="Enter text to save">
-                
-            </textarea>
-        </div> -->
-
-
+            <select id="dropdown"></select>
+        </div>
         <button id="btn-save" type="submit" class="btn btn-primary hover-btn">
             <span class="text-btn"></span>
             <span class="gradient"></span>
         </button>
         <div class="form-group">
-            <label for="doc-title">
-Click checkbox to save a local copy ⬇️ 🖥 
+            <label for="save-local">
+Click the checkbox to save a local copy ⬇️ 🖥 
             </label>
             <input type="checkbox" id="save-local" />
+        </div>
+        <div class="form-group">
+            <label for="commits-btn">
+Click the radio button to get commits ⬇️ 🖥 
+            </label>
+            <input type="radio" id="commits-btn" onclick="populateDropdown()" />
         </div>
     </form>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
