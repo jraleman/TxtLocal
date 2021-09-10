@@ -14,7 +14,7 @@ h1 {
 .title {
     vertical-align: sub;
     padding-left: 0.25em;
-    color: #32c3e8;
+    color: #367ab5;
 }
 
 label {
@@ -149,6 +149,15 @@ textarea {
     filter: invert();
 }
 
+.logo-frog {
+    width: auto;
+    height: 72px;
+}
+
+.logo-text {
+    font-size: 72px;
+}
+
 #dropdown {
-    width: 50%;
+    width: 100%;
 }

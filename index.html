@@ -12,9 +12,7 @@
 </head>
 <body>
     <h1>
-        <span class="logo-container">
-            <img src="./assets/logo.svg" alt="logo" class="logo-img">
-        </span>
+        <img src="./assets/frog.png" alt="logo" class="logo-frog">
         <span class="title">WriGit</span>
     </h1>
     <form role="form" onsubmit="return onSave(event)">
@@ -26,20 +24,20 @@ Enter a Title 🧠 💭 ✏️
         </div>
         <div id="editor"></div>
         <div class="form-group">
-            <label for="dropdown">
-                Find a previous commit 👀
+            <label for="save-local">
+Click the checkbox to save a local copy ⬇️ 🖥 
             </label>
-            <select id="dropdown"></select>
+            <input type="checkbox" id="save-local" />
         </div>
         <button id="btn-save" type="submit" class="btn btn-primary hover-btn">
             <span class="text-btn"></span>
             <span class="gradient"></span>
         </button>
         <div class="form-group">
-            <label for="save-local">
-Click the checkbox to save a local copy ⬇️ 🖥 
+            <label for="dropdown">
+                Find a previous commit 👀
             </label>
-            <input type="checkbox" id="save-local" />
+            <select id="dropdown" class="dropdown"></select>
         </div>
         <div class="form-group">
             <label for="commits-btn">
