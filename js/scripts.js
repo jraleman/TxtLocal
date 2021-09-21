@@ -4,7 +4,7 @@
 // ----------------------------------------------------
 // Mocked data:
 const title = 'This is an idea of what we can do...';
-const initialValue = `# ${title}
+const initialValue = ` # ${title}
 
 ## Chapter 1 - What do I do?
 
