@@ -4,7 +4,7 @@
 // ----------------------------------------------------
 // Mocked data:
 const title = 'This is an idea of what we can do...';
-const content = `# ${title}
+const initialValue = `# ${title}
 
 ## Chapter 1 - What do I do?
 
@@ -22,29 +22,37 @@ const content = `# ${title}
 `;
 
 // TODO: find a way to get line selected from [m..n]
-const content4 = `${content.split('\n').join()}`;
+const content4 = `${initialValue}`;
 const content3 = `${content4.split('\n').join()}`;
 const content2 = `${content3.split('\n').join()}`;
 const content1 = `${content2.split('\n').join()}`;
 
 const jsonResponse = { 
     data: [
-        { id: 4, title: `${title} - v4`, content4 },
-        { id: 3, title: `${title} - v3`, content3 },
-        { id: 2, title: `${title} - v2`, content2 },
-        { id: 1, title: `${title} - v1`, content1 },
+        { id: 4, title: `${title} - v4`, content: content4 },
+        { id: 3, title: `${title} - v3`, content: content3 },
+        { id: 2, title: `${title} - v2`, content: content2 },
+        { id: 1, title: `${title} - v1`, content: content1 },
     ]
 };
 
 // ----------------------------------------------------
 
-const editor = new toastui.Editor({
+const config = {
     el: document.querySelector('#editor'),
     previewStyle: 'vertical',
     height: '500px',
-    initialValue: content,
+    initialValue,
     initialEditType: 'wysiwyg'
-});
+};
+
+const dropdownId = 'dropdown';
+const filenameId = 'doc-title';
+const saveFileId = 'save-local';
+
+// ---------------------------------------------------
+
+const editor = new toastui.Editor({ ...config });
 
 // https://stackoverflow.com/a/30832210
 // TODO: save into a .zip file, containing also git changes of that file
@@ -72,37 +80,19 @@ const saveLocalFile = (blob, filename) => {
 const onSave = (event) => {
     event.preventDefault();
     const bodyContent = editor.getMarkdown();
-    const file = document.getElementById('doc-title').value;
+    const file = document.getElementById(filenameId).value;
     const extension = '.md';
     const filename = `${file || 'filename'}${extension}`;
     const blob = new Blob([bodyContent], {type: 'text/plain;charset=utf-8'});
-    window.alert('Hint: Open dev tools!');
-    console.log(
-        'This is an idea of what we can send to the backend:',
-        '\n\n',
-        `
-{
-    title: '  GET FROM FIRST LINE OF BODY CONTENT '
-    filename: ${filename},
-    blob: ${blob},
-    body: 
-    """
-        ${bodyContent}
-    """
-    ,
-}
-        `
-    );
     // TODO: Implement function to save file -> sendToBackend(blob, filename, ...);
-
-    const saveLocal = document.getElementById('save-local').checked;
+    const saveLocal = document.getElementById(saveFileId).checked;
     if (saveLocal) {
         saveLocalFile(blob, filename);
     }
 };
 
 const populateDropdown = () => {
-    const dropdown = document.getElementById('dropdown');
+    const dropdown = document.getElementById(dropdownId);
     if (dropdown.innerHTML) {
         return;
     }
@@ -118,17 +108,22 @@ const populateDropdown = () => {
 };
 
 const onSelectOption = () => {
+    const optionValue = document.getElementById(dropdownId).value;
+
     for (let i = 0; i < jsonResponse.data.length; i += 1) {
         const id = `${i + 1}`;
-        // TODO: check if option is selected
-        const option = document.getElementById(id);
-        // TODO: load data (content) from option (mock saved file, select from id)
-        // Change -> Editor {value} to contentX value...
+        const titleValue = jsonResponse.data[id] && jsonResponse.data[id].title;
+        if (optionValue === titleValue) {
+            const data = jsonResponse.data[id].content;
+            // load data to 
+            // Change -> Editor {value} to contentX value...
+            console.log({ optionValue, titleValue, data });
+        }
     }
 };
 
 const setTitle = () => {
-    const titleInput = document.getElementById('doc-title');
+    const titleInput = document.getElementById(filenameId);
     titleInput.value = title;
 };
 
