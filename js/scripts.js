@@ -1,8 +1,9 @@
 // https://github.com/nhn/tui.editor/issues/1637
 // https://github.com/nhn/tui.editor/issues/360
 
+// ----------------------------------------------------
+// Mocked data:
 const title = 'This is an idea of what we can do...';
-
 const content = `# ${title}
 
 ## Chapter 1 - What do I do?
@@ -19,6 +20,23 @@ const content = `# ${title}
 
 > **Please help!!!**
 `;
+
+// TODO: find a way to get line selected from [m..n]
+const content4 = `${content.split('\n').join()}`;
+const content3 = `${content4.split('\n').join()}`;
+const content2 = `${content3.split('\n').join()}`;
+const content1 = `${content2.split('\n').join()}`;
+
+const jsonResponse = { 
+    data: [
+        { id: 4, title: `${title} - v4`, content4 },
+        { id: 3, title: `${title} - v3`, content3 },
+        { id: 2, title: `${title} - v2`, content2 },
+        { id: 1, title: `${title} - v1`, content1 },
+    ]
+};
+
+// ----------------------------------------------------
 
 const editor = new toastui.Editor({
     el: document.querySelector('#editor'),
@@ -89,14 +107,24 @@ const populateDropdown = () => {
         return;
     }
 
-    const json = { 'data': [`${title} - 4`, `${title} - 3`, `${title} - 2`, `${title} - 1`] };
-    for (let i = 0; i < json.data.length; i += 1) {
+    for (let i = 0; i < jsonResponse.data.length; i += 1) {
         const option = document.createElement('option');
-        option.text = json.data[i];
-        option.value = json.data[i];
+        option.text = jsonResponse.data[i].title;
+        option.value = jsonResponse.data[i].title;
+        option.id = jsonResponse.data[i].id;
         dropdown.add(option);
     }
     return dropdown;
+};
+
+const onSelectOption = () => {
+    for (let i = 0; i < jsonResponse.data.length; i += 1) {
+        const id = `${i + 1}`;
+        // TODO: check if option is selected
+        const option = document.getElementById(id);
+        // TODO: load data (content) from option (mock saved file, select from id)
+        // Change -> Editor {value} to contentX value...
+    }
 };
 
 const setTitle = () => {
