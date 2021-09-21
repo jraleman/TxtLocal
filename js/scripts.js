@@ -38,12 +38,28 @@ const jsonResponse = {
 
 // ----------------------------------------------------
 
+const reWidgetRule = /\[(@\S+)\]\((\S+)\)/;
+const widgetRules = [
+    {
+        rule: reWidgetRule,
+        toDOM(text) {
+            const rule = reWidgetRule;
+            const matched = text.match(rule);
+            const span = document.createElement('span');
+
+            span.innerHTML = `<a class="widget-anchor" href="${matched[2]}">${matched[1]}</a>`;
+            return span;
+        },
+    },
+];
+
 const config = {
     el: document.querySelector('#editor'),
-    previewStyle: 'vertical',
-    height: '500px',
     initialValue,
-    initialEditType: 'wysiwyg'
+    widgetRules,
+    initialEditType: 'wysiwyg',
+    height: '500px',
+    previewStyle: 'vertical',
 };
 
 const dropdownId = 'dropdown';
@@ -51,7 +67,6 @@ const filenameId = 'doc-title';
 const saveFileId = 'save-local';
 
 // ---------------------------------------------------
-
 const editor = new toastui.Editor({ ...config });
 
 // https://stackoverflow.com/a/30832210
