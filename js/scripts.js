@@ -21,20 +21,25 @@ const initialValue = `# ${title}
 > **Please help!!!**
 `;
 
-// TODO: find a way to get line selected from [m..n]
-const content4 = `${initialValue}`;
-const content3 = `${content4.split('\n').join()}`;
-const content2 = `${content3.split('\n').join()}`;
-const content1 = `${content2.split('\n').join()}`;
+const content4 = initialValue;
+const content3 = `${content4.split('.').join('.').slice(1, content4.length / 1.25)}`;
+const content2 = `${content3.split('.').join('.').slice(1, content3.length / 1.25)}`;
+const content1 = `${content2.split('.').join('.').slice(1, content2.length / 1.25)}`;
 
 const jsonResponse = { 
     data: [
-        { id: 4, title: `${title} - v4`, content: content4 },
-        { id: 3, title: `${title} - v3`, content: content3 },
-        { id: 2, title: `${title} - v2`, content: content2 },
-        { id: 1, title: `${title} - v1`, content: content1 },
+        { id: 4, title: `${title} - ver. 4`, content: content4 },
+        { id: 3, title: `${title} - ver. 3`, content: content3 },
+        { id: 2, title: `${title} - ver. 2`, content: content2 },
+        { id: 1, title: `${title} - ver. 1`, content: content1 },
     ]
 };
+
+// ----------------------------------------------------
+
+const dropdownId = 'dropdown';
+const filenameId = 'doc-title';
+const saveFileId = 'save-local';
 
 // ----------------------------------------------------
 
@@ -60,14 +65,14 @@ const config = {
     initialEditType: 'wysiwyg',
     height: '500px',
     previewStyle: 'vertical',
+    hideModeSwitch: true,
 };
 
-const dropdownId = 'dropdown';
-const filenameId = 'doc-title';
-const saveFileId = 'save-local';
+// ----------------------------------------------------
 
-// ---------------------------------------------------
 const editor = new toastui.Editor({ ...config });
+
+// ----------------------------------------------------
 
 // https://stackoverflow.com/a/30832210
 // TODO: save into a .zip file, containing also git changes of that file
@@ -126,16 +131,15 @@ const onSelectOption = () => {
     const optionValue = document.getElementById(dropdownId).value;
 
     for (let i = 0; i < jsonResponse.data.length; i += 1) {
-        const id = `${i + 1}`;
-        const titleValue = jsonResponse.data[id] && jsonResponse.data[id].title;
+        const titleValue = jsonResponse.data[i] && jsonResponse.data[i].title;
         if (optionValue === titleValue) {
-            const data = jsonResponse.data[id].content;
-            // load data to 
-            // Change -> Editor {value} to contentX value...
-            console.log({ optionValue, titleValue, data });
+            const data = jsonResponse.data[i].content;
+            editor.setMarkdown(data, true);
         }
     }
 };
+
+// ----------------------------------------------------
 
 const setTitle = () => {
     const titleInput = document.getElementById(filenameId);
