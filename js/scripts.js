@@ -4,7 +4,8 @@
 // ----------------------------------------------------
 // Mocked data:
 const title = 'This is an idea of what we can do...';
-const initialValue = ` # ${title}
+const initialValue = `
+ ${title}
 
 ## Chapter 1 - What do I do?
 
@@ -21,10 +22,13 @@ const initialValue = ` # ${title}
 > **Please help!!!**
 `;
 
+const percentage = 1.25;
+const trimContent = (c) => console.log({ c }) || ` ${c.split('.').join('').slice(1, c.length / percentage)} `;
+
 const content4 = initialValue;
-const content3 = `${content4.split('.').join('.').slice(1, content4.length / 1.25)}`;
-const content2 = `${content3.split('.').join('.').slice(1, content3.length / 1.25)}`;
-const content1 = `${content2.split('.').join('.').slice(1, content2.length / 1.25)}`;
+const content3 = trimContent(content4);
+const content2 = trimContent(content3);
+const content1 = trimContent(content2);
 
 const jsonResponse = { 
     data: [
