@@ -11,6 +11,18 @@ h1 {
     font-family: url('./assets/fonts/on_my_way.ttf'), sans-serif;
 }
 
+h3 {
+    padding-top: 24px;
+    font-family: 'On My Way', sans-serif;
+    text-align: center;
+    font-size: 56px;
+    font-family: url('./assets/fonts/on_my_way.ttf'), sans-serif;
+}
+
+.container {
+    max-width: 1200px;
+}
+
 .title {
     vertical-align: sub;
     padding-left: 0.25em;
