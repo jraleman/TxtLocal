@@ -46,7 +46,14 @@ const dropdownId = 'dropdown';
 const filenameId = 'doc-title';
 const saveFileId = 'save-local';
 const optionId = 'option';
+const overlayId = 'loading-overlay';
+const loadingMessageId = 'loading-message';
+const loadingSpannerId = 'loading-spanner';
+
 const commitsKey = 'wrigitCommits';
+
+const saveCommitMessage = 'Saving commit...';
+const loadCommitsMessage = 'Loading commits...';
 
 // ----------------------------------------------------
 // EDITOR
@@ -149,9 +156,31 @@ const saveCommit = (numId, bodyContent, commitName) => {
     }
     jsonResponse.push(commit);
     const sorted = jsonResponse.sort(({ id: a }, { id: b }) => b - a);
-    populateDropdown(sorted);
+    populateDropdown(sorted, saveCommitMessage);
     saveLocalCommits(sorted);
     return commit;
+};
+
+// Fake loaders
+const displayLoader = (message) => {
+    const fakeLoader = (msg) => {
+        const overlay = document.getElementById(overlayId);
+        const loadingSpanner = document.getElementById(loadingSpannerId)
+        const loadingMessage = document.getElementById(loadingMessageId);
+        overlay.classList.add('show');
+        loadingSpanner.classList.add('show');
+        loadingMessage.innerHTML = msg;
+    
+        const loadingTime = 4242 / 2;
+        setTimeout(() => {
+            overlay.classList.remove('show');
+            loadingSpanner.classList.remove('show');
+            loadingMessage.innerHTML = '';
+        }, loadingTime);
+        return loadingTime;
+    };
+
+    fakeLoader(message);
 };
 
 const onSave = (event) => {
@@ -166,11 +195,14 @@ const onSave = (event) => {
     if (saveLocal) {
         saveLocalFile(blob, filename);
     }
-
+    
     // TODO: removed mocked logic
     const numId = jsonResponse.length + 1;
     const commitName = `${title} - ver. ${numId}`;
-    saveCommit(numId, bodyContent, commitName);
+    const commit = saveCommit(numId, bodyContent, commitName);
+    if (commit) {
+        displayLoader(saveCommitMessage);
+    }
     return blob;
 };
 
