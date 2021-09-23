@@ -187,14 +187,7 @@ const onSave = (event) => {
     event.preventDefault();
     const bodyContent = editor.getMarkdown();
     const file = document.getElementById(filenameId).value;
-    const extension = '.md';
-    const filename = `${file || 'filename'}${extension}`;
     const blob = new Blob([bodyContent], {type: 'text/plain;charset=utf-8'});
-    // TODO: Implement function to save file -> sendToBackend(blob, filename, ...);
-    const saveLocal = document.getElementById(saveFileId).checked;
-    if (saveLocal) {
-        saveLocalFile(blob, filename);
-    }
     
     // TODO: removed mocked logic
     const numId = jsonResponse.length + 1;
@@ -202,6 +195,14 @@ const onSave = (event) => {
     const commit = saveCommit(numId, bodyContent, commitName);
     if (commit) {
         displayLoader(saveCommitMessage);
+    }
+
+    // TODO: Implement function to save file -> sendToBackend(blob, filename, ...);
+    const saveLocal = document.getElementById(saveFileId).checked;
+    const extension = '.md';
+    const filename = `${commitName || file || 'filename'}${extension}`;
+    if (saveLocal) {
+        saveLocalFile(blob, filename);
     }
     return blob;
 };
