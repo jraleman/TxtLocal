@@ -2,7 +2,8 @@
 // https://github.com/nhn/tui.editor/issues/360
 
 // ----------------------------------------------------
-// Mocked data:
+// MOCKED DATA
+
 const title = 'This is an idea of what we can do...';
 const initialValue = `
  ${title}
@@ -23,40 +24,40 @@ const initialValue = `
 `;
 
 const percentage = 1.25;
-const trimContent = (c) => console.log({ c }) || ` ${c.split('.').join('').slice(1, c.length / percentage)} `;
+const trimContent = (c) => ` ${c.split('.').join('').slice(1, c.length / percentage)} `;
 
 const content4 = initialValue;
 const content3 = trimContent(content4);
 const content2 = trimContent(content3);
 const content1 = trimContent(content2);
 
-const jsonResponse = { 
-    data: [
-        { id: 4, title: `${title} - ver. 4`, content: content4 },
-        { id: 3, title: `${title} - ver. 3`, content: content3 },
-        { id: 2, title: `${title} - ver. 2`, content: content2 },
-        { id: 1, title: `${title} - ver. 1`, content: content1 },
-    ]
-};
+// TODO: Add date to title
+const jsonResponse = [
+    { id: 4, title: `${title} - ver. 4`, content: content4 },
+    { id: 3, title: `${title} - ver. 3`, content: content3 },
+    { id: 2, title: `${title} - ver. 2`, content: content2 },
+    { id: 1, title: `${title} - ver. 1 `, content: content1 },
+];
 
 // ----------------------------------------------------
+// CONSTANTS
 
 const dropdownId = 'dropdown';
 const filenameId = 'doc-title';
 const saveFileId = 'save-local';
 
 // ----------------------------------------------------
+// EDITOR
 
-const reWidgetRule = /\[(@\S+)\]\((\S+)\)/;
+const rule = /\[(@\S+)\]\((\S+)\)/;
 const widgetRules = [
     {
-        rule: reWidgetRule,
+        rule,
         toDOM(text) {
-            const rule = reWidgetRule;
-            const matched = text.match(rule);
             const span = document.createElement('span');
+            const i = text.match(rule);
 
-            span.innerHTML = `<a class="widget-anchor" href="${matched[2]}">${matched[1]}</a>`;
+            span.innerHTML = `<a class="widget-anchor" href="${i[2]}">${i[1]}</a>`;
             return span;
         },
     },
@@ -72,11 +73,10 @@ const config = {
     hideModeSwitch: true,
 };
 
-// ----------------------------------------------------
-
 const editor = new toastui.Editor({ ...config });
 
 // ----------------------------------------------------
+// UTILS
 
 // https://stackoverflow.com/a/30832210
 // TODO: save into a .zip file, containing also git changes of that file
@@ -99,7 +99,36 @@ const saveLocalFile = (blob, filename) => {
         }, 0); 
     }
     return file;
-}
+};
+
+const populateDropdown = (opts = jsonResponse) => {
+    const dropdown = document.getElementById(dropdownId);
+    // const start = dropdown.children ? dropdown.children.length : 0;
+    dropdown.children = [];
+    dropdown.innerHTML = '';
+    for (let i = 0; i < opts.length; i += 1) {
+        const option = document.createElement('option');
+        option.text = opts[i].title;
+        option.value = opts[i].title;
+        option.id = opts[i].id;
+        option.selected = !!(i === opts.length);
+        dropdown.add(option);
+    }
+    return dropdown;
+};
+
+// TODO: rename arguments
+const saveCommit = (numId, bodyContent, commitName) => {
+    const commit = {
+        id: numId,
+        content: bodyContent,
+        title: commitName,
+    };
+    jsonResponse.push(commit);
+    const sorted = jsonResponse.sort(({ id: a }, { id: b }) => b - a);
+    populateDropdown(sorted);
+    return commit;
+};
 
 const onSave = (event) => {
     event.preventDefault();
@@ -113,45 +142,39 @@ const onSave = (event) => {
     if (saveLocal) {
         saveLocalFile(blob, filename);
     }
-};
 
-const populateDropdown = () => {
-    const dropdown = document.getElementById(dropdownId);
-    if (dropdown.innerHTML) {
-        return;
-    }
-
-    for (let i = 0; i < jsonResponse.data.length; i += 1) {
-        const option = document.createElement('option');
-        option.text = jsonResponse.data[i].title;
-        option.value = jsonResponse.data[i].title;
-        option.id = jsonResponse.data[i].id;
-        dropdown.add(option);
-    }
-    return dropdown;
+    // TODO: removed mocked logic
+    const numId = jsonResponse.length + 1;
+    const commitName = `${title} - ver. ${numId}`;
+    saveCommit(numId, bodyContent, commitName);
+    return blob;
 };
 
 const onSelectOption = () => {
     const optionValue = document.getElementById(dropdownId).value;
 
-    for (let i = 0; i < jsonResponse.data.length; i += 1) {
-        const titleValue = jsonResponse.data[i] && jsonResponse.data[i].title;
+    for (let i = 0; i < jsonResponse.length; i += 1) {
+        const titleValue = jsonResponse[i] && jsonResponse[i].title;
         if (optionValue === titleValue) {
-            const data = jsonResponse.data[i].content;
+            const data = jsonResponse[i].content;
             editor.setMarkdown(data, true);
         }
     }
+    return optionValue;
 };
 
 // ----------------------------------------------------
+// MAIN
 
 const setTitle = () => {
     const titleInput = document.getElementById(filenameId);
     titleInput.value = title;
+    return titleInput;
 };
 
 const runOnLoad = () => {
-    setTitle();
+    // setTitle();
+    // The idea is that the title entered,
 };
 
 document.onload = runOnLoad();
