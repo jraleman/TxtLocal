@@ -123,6 +123,11 @@ const saveCommit = (numId, bodyContent, commitName) => {
         content: bodyContent,
         title: commitName,
     };
+
+    // if no changes, don't commit!
+    if (jsonResponse[0].content.trim() === commit.content) {
+        return ;
+    }
     jsonResponse.push(commit);
     const sorted = jsonResponse.sort(({ id: a }, { id: b }) => b - a);
     populateDropdown(sorted);
