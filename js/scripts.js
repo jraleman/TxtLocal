@@ -74,7 +74,7 @@ const widgetRules = [
 
 const config = {
     el: document.querySelector('#editor'),
-    initialValue,
+    // initialValue,
     widgetRules,
     initialEditType: 'wysiwyg',
     height: '500px',
