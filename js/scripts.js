@@ -103,7 +103,6 @@ const saveLocalFile = (blob, filename) => {
 
 const populateDropdown = (opts = jsonResponse) => {
     const dropdown = document.getElementById(dropdownId);
-    // const start = dropdown.children ? dropdown.children.length : 0;
     dropdown.children = [];
     dropdown.innerHTML = '';
     for (let i = 0; i < opts.length; i += 1) {
@@ -174,7 +173,11 @@ const setTitle = () => {
 
 const runOnLoad = () => {
     // setTitle();
-    // The idea is that the title entered,
+    // ^
+    // The idea is that the title entered, is also being entered into the editor
+    // so when the user types the title, it will modify the text on the editor
+    // I won't implement this in vainilla javascript, because I am lazy
+    // but at least here is the idea of the functionality :)
 };
 
 document.onload = runOnLoad();
