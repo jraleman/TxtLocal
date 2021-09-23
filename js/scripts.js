@@ -45,6 +45,8 @@ const jsonResponse = [
 const dropdownId = 'dropdown';
 const filenameId = 'doc-title';
 const saveFileId = 'save-local';
+const optionId = 'option';
+const commitsKey = 'wrigitCommits';
 
 // ----------------------------------------------------
 // EDITOR
@@ -78,6 +80,23 @@ const editor = new toastui.Editor({ ...config });
 // ----------------------------------------------------
 // UTILS
 
+const saveLocalCommits = () => {
+    localStorage.setItem(commitsKey, JSON.stringify(jsonResponse));
+};
+
+const getLocalCommits = () => {
+    const commit = JSON.parse(localStorage.getItem(commitsKey));
+    return commit;
+};
+
+const loadLocalCommits = (commits) => {
+    jsonResponse.length = 0;
+    for (let i = 0; i < commits.length; i += 1) {
+        jsonResponse.push(commits[i]);
+    }
+    return jsonResponse;
+};
+
 // https://stackoverflow.com/a/30832210
 // TODO: save into a .zip file, containing also git changes of that file
 // So we can load from that point... We could also save snapshots of the diffs and create
@@ -106,7 +125,7 @@ const populateDropdown = (opts = jsonResponse) => {
     dropdown.children = [];
     dropdown.innerHTML = '';
     for (let i = 0; i < opts.length; i += 1) {
-        const option = document.createElement('option');
+        const option = document.createElement(optionId);
         option.text = opts[i].title;
         option.value = opts[i].title;
         option.id = opts[i].id;
@@ -131,6 +150,7 @@ const saveCommit = (numId, bodyContent, commitName) => {
     jsonResponse.push(commit);
     const sorted = jsonResponse.sort(({ id: a }, { id: b }) => b - a);
     populateDropdown(sorted);
+    saveLocalCommits(sorted);
     return commit;
 };
 
@@ -183,6 +203,13 @@ const runOnLoad = () => {
     // so when the user types the title, it will modify the text on the editor
     // I won't implement this in vainilla javascript, because I am lazy
     // but at least here is the idea of the functionality :)
+    const commits = getLocalCommits();
+    if (commits) {
+        // note: timeout to simulate request
+        setTimeout(() => {
+            loadLocalCommits(commits);
+        }, 1000);
+    }
 };
 
 document.onload = runOnLoad();
