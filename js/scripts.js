@@ -96,6 +96,10 @@ const getLocalCommits = () => {
     return commit;
 };
 
+const clearLocalCommits = () => {
+    localStorage.removeItem(commitsKey);
+}
+
 const loadLocalCommits = (commits) => {
     jsonResponse.length = 0;
     for (let i = 0; i < commits.length; i += 1) {
@@ -219,6 +223,14 @@ const onSelectOption = () => {
     }
     return optionValue;
 };
+
+const onDelete = () => {
+    window.alert('Are you sure?');
+    const confirm = false;
+    if (confirm) {
+        clearLocalCommits();
+    }
+}
 
 // ----------------------------------------------------
 // MAIN
