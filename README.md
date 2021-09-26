@@ -13,7 +13,7 @@ Text editor with a version control system powered by Git.
   - [x] When user clicks on button, call function to push new entry into `jsonResponse` array.
   - [x] Save new `jsonResponse` array into `localeStorage`.
   - [x] Load new `jsonResponse` array from `localStorage` (if any).
-- [ ] Implement clearCommits (thrash icon) button, and make sure user confirms
+- [x] Implement clearCommits (thrash icon) button, and make sure user confirms
 - [ ] Change background color, depending on writing style
   - https://writerinspired.wordpress.com/2011/12/08/what-color-should-your-writing-room-be/
 - [ ] Front-end checklist
