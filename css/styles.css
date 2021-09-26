@@ -14,7 +14,7 @@ h3 {
     padding-top: 24px;
     font-family: 'On My Way', sans-serif;
     text-align: center;
-    font-size: 56px;
+    font-size: 36px;
     font-family: url('./assets/fonts/on_my_way.ttf'), sans-serif;
 }
 
@@ -73,11 +73,16 @@ textarea {
 
 .text-btn:after {
     content: "Commit (Save) Your Changes";
+    display: block;
+    width: 100%;
+    height: 100%;
 }
 
 .text-btn:hover:after {
     content: "💾  Let's Do It! 🏆";
-    padding: 1em;
+    display: block;
+    width: 100%;
+    height: 100%;
 }
 
 .hover-btn:after {
