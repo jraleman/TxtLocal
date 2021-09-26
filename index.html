@@ -21,7 +21,10 @@
     <div class="container animate__animated animate__fadeIn animate__slower">
         <h1 class="animate__animated animate__pulse animate__slow">
             <img src="./assets/frog.png" alt="logo" class="logo-frog">
-            <span class="title">WriGit</span>
+            <span class="title">
+<!-- LOGO -->
+WriGit
+            </span>
         </h1>
         <form role="form" onsubmit="return onSave(event)">
             <div class="form-group">
@@ -41,9 +44,15 @@ Click the checkbox to save a local copy ⬇️ 🖥
                 <span class="text-btn"></span>
                 <span class="gradient"></span>
             </button>
-            <hr />
-            <br />
-            <h3>💾 Your Commits</h3>
+        </form>
+        <br />
+        <hr />
+        <br />
+        <form role="form">
+            <!-- TODO: make font size smaller -->
+            <h3>
+💾 Your Commits
+            </h3>
             <div class="form-group">
                 <label for="commits-btn">
 Click the radio button to get commits ⬇️ 🖥 
@@ -56,6 +65,10 @@ Select a commit to load document version 💾 👀
                 </label>
                 <select id="dropdown" class="dropdown" onchange="return onSelectOption()"></select>
             </div>
+            <!-- TODO: style this button -->
+            <button onclick="return onDelete(event)">
+Delete All Commits 💣 ⚰️
+            </button>
         </form>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>

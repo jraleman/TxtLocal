@@ -224,11 +224,20 @@ const onSelectOption = () => {
     return optionValue;
 };
 
-const onDelete = () => {
-    window.alert('Are you sure?');
-    const confirm = false;
-    if (confirm) {
+const onDelete = (event) => {
+    console.log({event});
+    event.preventDefault();
+    event.stopPropagation();
+
+    const confirmLabel = 'Are you sure you want to delete all your commits?';
+    const confirmAcceptLabel = 'Your commits have been deleted.';
+    const confirmDeclineLabel = 'Good choice! 👍';
+    if (confirm(confirmLabel)) {
+        // TODO: we should repopulate dropdown from with default commit history (initial JSON.response value)
         clearLocalCommits();
+        window.alert(confirmAcceptLabel);
+    } else {
+        window.alert(confirmDeclineLabel);
     }
 }
 
