@@ -1,4 +1,4 @@
-# wrigit.com
+# WriGit.com
 
 Text editor with a version control system powered by Git.
 
@@ -14,7 +14,8 @@ Text editor with a version control system powered by Git.
   - [x] Save new `jsonResponse` array into `localeStorage`.
   - [x] Load new `jsonResponse` array from `localStorage` (if any).
 - [x] Implement clearCommits (thrash icon) button, and make sure user confirms
-- [ ] Change background color, depending on writing style
-  - https://writerinspired.wordpress.com/2011/12/08/what-color-should-your-writing-room-be/
-- [ ] Front-end checklist
-  - https://github.com/thedaviddias/Front-End-Checklist
+- [ ] Change background color, [depending on writing style](https://writerinspired.wordpress.com/2011/12/08/what-color-should-your-writing-room-be/)
+- [ ] Follow best practices:
+  - [ ] https://github.com/thedaviddias/Front-End-Checklist/
+  - [ ] https://github.com/thedaviddias/Front-End-Performance-Checklist
+  - [ ] https://github.com/thedaviddias/Front-End-Design-Checklis
