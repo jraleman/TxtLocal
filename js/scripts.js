@@ -225,7 +225,7 @@ const onSelectOption = () => {
 };
 
 const onDelete = (event) => {
-    console.log({event});
+    console.log({ event });
     event.preventDefault();
     event.stopPropagation();
 
@@ -236,6 +236,7 @@ const onDelete = (event) => {
         // TODO: we should repopulate dropdown from with default commit history (initial JSON.response value)
         clearLocalCommits();
         window.alert(confirmAcceptLabel);
+        window.location.reload();
     } else {
         window.alert(confirmDeclineLabel);
     }
