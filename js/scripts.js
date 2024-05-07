@@ -105,6 +105,7 @@ const loadLocalCommits = (commits) => {
     for (let i = 0; i < commits.length; i += 1) {
         jsonResponse.push(commits[i]);
     }
+    populateDropdown();
     return jsonResponse;
 };
 

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WriGit</title>
+    <title>TxtLocal</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
@@ -20,10 +20,10 @@
     </div>
     <div class="container animate__animated animate__fadeIn animate__slower">
         <h1 class="animate__animated animate__pulse animate__slow">
-            <img src="./assets/frog.png" alt="logo" class="logo-frog">
+            <img src="./assets/logo.png" alt="logo" class="logo-frog">
             <span class="title">
 <!-- LOGO -->
-WriGit
+TxtLocal
             </span>
         </h1>
         <form role="form" onsubmit="return onSave(event)">
@@ -51,23 +51,23 @@ Click the checkbox to save a local copy ⬇️ 🖥
         <form role="form">
             <!-- TODO: make font size smaller -->
             <h3>
-💾 Your Commits
+💾 Your Versions
             </h3>
             <div class="form-group">
                 <label for="commits-btn">
-Click the radio button to get commits ⬇️ 🖥 
+Click the radio button to get versions ⬇️ 🖥 
                 </label>
                 <input type="radio" id="commits-btn" onclick="return populateDropdown()" />
             </div>
             <div class="form-group">
                 <label for="dropdown">
-Select a commit to load document version 💾 👀
+Select a versions to load document 💾 👀
                 </label>
                 <select id="dropdown" class="dropdown" onchange="return onSelectOption()"></select>
             </div>
             <!-- TODO: style this button -->
             <button id="btn-delete" class="btn btn-primary hover-btn" onclick="return onDelete(event)">
-Delete All Commits 💣 ⚰️
+Delete All Versions 💣 ⚰️
             </button>
         </form>
     </div>
